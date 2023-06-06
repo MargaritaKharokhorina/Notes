@@ -1,10 +1,12 @@
 import csv
 from tkinter import *
 from tkinter import messagebox
-from tkinter.filedialog import askopenfile, askopenfiles, asksaveasfile
+from tkinter.filedialog import askopenfile, asksaveasfile
 import os
+
 #import pathlib
 #from pathlib import Path
+
 
 
 file_name = NONE
@@ -54,6 +56,7 @@ def list_files(event):
     #with open(way, "w", encoding='utf-8') as f:
         #json.dump(text_save, f, indent=4, ensure_ascii=False)
     #root.after(60000 * 1, autosave)
+
 
 root = Tk()
 root.title("Заметки")
