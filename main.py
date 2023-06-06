@@ -32,7 +32,7 @@ def open_file():
         return 
     file_name = inp.name
     data = inp.read()
-    text.delete('1.0', END)
+    #text.delete('1.0', END)
     text.insert('1.0', data)
 
 def delete_text():
