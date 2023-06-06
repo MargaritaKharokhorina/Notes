@@ -41,7 +41,7 @@ def delete_text():
 
 
 def list_files(event):
-    content = os.listdir('/Users/kharo/OneDrive/Рабочий стол/Заметки')
+    content = os.listdir('/Users/kharo/OneDrive/Рабочий стол/Notes/Notes')
     #content = askopenfiles(mode='r')
     print(content)
     
