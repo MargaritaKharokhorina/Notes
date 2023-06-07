@@ -37,25 +37,21 @@ def open_file():
     #text.delete('1.0', END)
     text.insert('1.0', data)
 
-def delete_text():
-    text.delete("1.0", END)
+#def delete_text(event1):
+    #text.delete('1.0', END)
+    #note = input("Введите название существующего файла, который хотите удалить: ")
+    #os.remove(note)
+    #print("File removed successfully")
  
 
 
-def list_files(event):
+def list_remove_files(event):
     content = os.listdir('/Users/kharo/OneDrive/Рабочий стол/Notes/Notes')
-    #content = askopenfiles(mode='r')
     print(content)
-    
+    path = input("Введите путь файла, который хотите удалить: ")
+    os.remove(path)
+    print("File removed successfully")
 
-
-
-#def autosave():
-    #way = "last_node.json"
-    #text_save = text.get('1.0', END)
-    #with open(way, "w", encoding='utf-8') as f:
-        #json.dump(text_save, f, indent=4, ensure_ascii=False)
-    #root.after(60000 * 1, autosave)
 
 
 root = Tk()
@@ -64,17 +60,17 @@ root.geometry("400x400")
 text = Text(root, width=400, height=400)
 
 but1 = Button(root)
-but1["text"] = "Просмотр списка заметок"
-but1.bind("<Button-1>", list_files)
+but1["text"] = "Просмотр списка заметок и удаление"
+but1.bind("<Button-1>", list_remove_files)
 
-but2 = Button(root)
-but2["text"] = "Удалить заметку"
-but2.bind("<Button-2>", delete_text)
+#but2 = Button(root)
+#but2["text"] = "Удаление"
+#but2.bind("<Button-2>", delete_text)
 
 #button.pack()
 
 but1.pack()
-but2.pack()
+#but2.pack()
 
 text.pack()
 
@@ -88,16 +84,6 @@ file_menu.add_command(label="Сохранить как", command=save_as)
 
 
 
-
-
-
-
 root.config(menu=notes_menu)
-
-#way = 'last_node.json'
-#with open(way) as f:
-    #insert = json.load(f)
-    #print(f"{insert}")
-#text.insert(INSERT, insert)
 
 root.mainloop()
