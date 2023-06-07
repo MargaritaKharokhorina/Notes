@@ -1,12 +1,8 @@
-import csv
+
 from tkinter import *
 from tkinter import messagebox
 from tkinter.filedialog import askopenfile, asksaveasfile
 import os
-
-#import pathlib
-#from pathlib import Path
-
 
 
 file_name = NONE
@@ -14,17 +10,18 @@ file_name = NONE
 
 def new_file():
     global file_name
-    file_name = "Без названия"
+    file_name = "Untitled"
     text.delete('1.0', END)
 
 
-def save_as():
+def save_as(): # эта фун-ция также отвечает за редактирование, поскольку внеся изменения в файл, мы можем пересохранить его в имеющийся
     out = asksaveasfile(mode='w', defaultextension='csv')
     data = text.get('1.0', END)
     try:
         out.write(data.rstrip())
     except Exception:
-        messagebox.showerror("Нельзя сохранить файл")
+        messagebox.showerror("Can't save file")
+
 
 
 def open_file():
@@ -34,54 +31,56 @@ def open_file():
         return 
     file_name = inp.name
     data = inp.read()
-    #text.delete('1.0', END)
+    text.delete('1.0', END)
     text.insert('1.0', data)
 
-#def delete_text(event1):
-    #text.delete('1.0', END)
-    #note = input("Введите название существующего файла, который хотите удалить: ")
-    #os.remove(note)
-    #print("File removed successfully")
- 
 
-
-def list_remove_files(event):
-    content = os.listdir('/Users/kharo/OneDrive/Рабочий стол/Notes/Notes')
+def list_remove_files(event):  # вывод в консоль
+    content = os.listdir('Files')
+    print("Your list of notes: ")
     print(content)
-    path = input("Введите путь файла, который хотите удалить: ")
-    os.remove(path)
-    print("File removed successfully")
+    path = input("Copy and paste the relative path of the file you want to delete: ")
+    try:
+        os.remove(path)
+        print("File removed successfully")
+    except FileNotFoundError:
+        print("Invalid file path, try again")
+
+def sort_by_date(event1): # вывод в консоль
+    path = "Files"
+    file_list = os.listdir(path)
+    full_list = [os.path.join(path, i) for i in file_list]
+    time_sorted_list = sorted(full_list, key = os.path.getmtime)
+    print("Sort notes by date:")
+    print(time_sorted_list)
+
 
 
 
 root = Tk()
-root.title("Заметки")
+root.title("Notes")
 root.geometry("400x400")
 text = Text(root, width=400, height=400)
 
+# кнопка "Просмотр списка заметок и удаление"
 but1 = Button(root)
-but1["text"] = "Просмотр списка заметок и удаление"
+but1["text"] = "Viewing the list of notes and deleting"
 but1.bind("<Button-1>", list_remove_files)
-
-#but2 = Button(root)
-#but2["text"] = "Удаление"
-#but2.bind("<Button-2>", delete_text)
-
-#button.pack()
+# кнопка "Сортировка по дате"
+but2 = Button(root)
+but2["text"] = "Sort by date: from early to late"
+but2.bind("<Button-1>", sort_by_date)
 
 but1.pack()
-#but2.pack()
-
+but2.pack()
 text.pack()
 
 notes_menu = Menu(root)
 file_menu = Menu(notes_menu)
-notes_menu.add_cascade(label="Работа с заметками", menu=file_menu)
-file_menu.add_command(label="Создать новую заметку", command=new_file)
-file_menu.add_command(label="Открыть заметку", command=open_file)
-file_menu.add_command(label="Сохранить как", command=save_as)
-#file_menu.add_command(label="Показать список заметок", command=list_files)
-
+notes_menu.add_cascade(label="Working with notes", menu=file_menu)
+file_menu.add_command(label="Create a new note", command=new_file)
+file_menu.add_command(label="Open note", command=open_file)
+file_menu.add_command(label="Save as", command=save_as)
 
 
 root.config(menu=notes_menu)
