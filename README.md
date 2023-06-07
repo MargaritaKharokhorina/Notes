@@ -13,4 +13,16 @@
 
 Пример создания новой заметки и сохранения ее в папку Files на рабочем столе: 
 
+[![1.jpg](https://i.postimg.cc/9f5FNhBc/1.jpg)](https://postimg.cc/RWdBN28Y)
+[![2.jpg](https://i.postimg.cc/P5GjdMv4/2.jpg)](https://postimg.cc/8jb3HMHJ)
+[![3.jpg](https://i.postimg.cc/VL98LC9P/3.jpg)](https://postimg.cc/PPqcSNFS)
+[![4.jpg](https://i.postimg.cc/P5fBXFr1/4.jpg)](https://postimg.cc/qzYmQwK7)
+[![5.jpg](https://i.postimg.cc/W1J0ks3V/5.jpg)](https://postimg.cc/3kYyM5mf)
+
+Для того чтобы отредактировать файл, достаточно просто снова открыть его, внести необходимые измения и заново сохранить - заменить **(def save_as)**:
+
+*исправлено red на orange и добавлен новый цвет*
+[![6.jpg](https://i.postimg.cc/pX5m0qtY/6.jpg)](https://postimg.cc/JGm7030G)
+
+
 
